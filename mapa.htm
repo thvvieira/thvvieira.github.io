@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Mapa do Brasil</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+       
+        <script type="text/javascript">
+            var estados = Array();
+            estados[3] = 'Acre';
+            estados[4] = 'Amazônia';
+            estados[5] = 'Roraima';
+            estados[6] = 'Amapá';
+            estados[7] = 'Maranhão';
+            estados[8] = 'Rondônia';
+            estados[9] = 'Mato Grasso';
+            estados[10] = 'Mato Grasso do Sul';
+            estados[11] = 'Goiás';
+            estados[12] = 'Paraná';
+            estados[13] = 'São Paulo';
+            estados[14] = 'Rio de Janeiro';
+            estados[15] = 'Espírito Santo';
+            estados[16] = 'Minas Gerais';
+            estados[17] = 'Santa Catarina';
+            estados[18] = 'Rio Grande do Sul';
+
+            estados[19] = 'Tocantins';
+            estados[20] = 'Bahia';
+            estados[22] = 'Sergipe';
+            estados[21] = 'Alagoas';
+            estados[23] = 'Piauí';
+            estados[24] = 'Ceará';
+            estados[25] = 'Rio Grande do Norte';
+            estados[26] = 'Paraíba';
+            estados[27] = 'Pernanbuco';
+            estados[28] = 'Pará';
+
+            var ativos = Array();
+            ativos[0] = false;
+            ativos[1] = false;
+            ativos[2] = false;
+            ativos[3] = false;
+            ativos[4] = false;
+            ativos[5] = false;
+            ativos[6] = false;
+            ativos[7] = true;
+            ativos[8] = false;
+            ativos[9] = false;
+            ativos[10] = true;
+            ativos[11] = false;
+            ativos[12] = true;
+            ativos[13] = false;
+            ativos[14] = false;
+            ativos[15] = false;
+            ativos[16] = false;
+            ativos[17] = true;
+            ativos[18] = true;
+            ativos[19] = false;
+            ativos[20] = false;
+            ativos[21] = false;
+            ativos[22] = false;
+            ativos[23] = false;
+            ativos[24] = false;
+            ativos[25] = false;
+            ativos[26] = false;
+            ativos[27] = false;
+            ativos[28] = true;
+
+            function ativaComEstado() {
+                var i = 0;
+                ativos.forEach(function(entry) {
+                    if (ativos[i]) {
+                        $('.estado' + i).attr('fill', 'orange');
+                        $('.estado' + i).attr('stroke', '#F1F1F2');
+                    }
+                    i++;
+                });
+            }
+
+            $(document).ready(function() {
+                $('.estado').hover(
+                        function() {
+                            var estado_aux = $(this).attr('class');
+                            estado_aux = estado_aux.split(' ');
+                            estado_aux = estado_aux[1].replace('estado', '');
+                            var texto_estado=estados[estado_aux]+"<br/><br/>";
+
+                            if (estado_aux == 12)
+                            {
+                                texto_estado +=  " BOSSE SERVIÇOS<br/>";
+                              texto_estado +=  "(47) 3323-9988 ou (47) 99983-1920<br/>";
+                              texto_estado +=  "Região Curitiba/SC";
+                            
+                            }
+                             if (estado_aux == 17)
+                            {
+                              texto_estado +=  "ANTONIO<br/>";
+                              texto_estado +=  "(49) 99972-2745<br/>";
+                              texto_estado +=  "Região Caçador/SC<br/><br/>";
+
+                              texto_estado +=  "BOSSE SERVIÇOS<br/>";
+                              texto_estado +=  "(47) 3323-9988 ou (47) 99983-1920<br/>";
+                              texto_estado +=  "Região Blumenau/SC<br/><br/>";
+
+                              texto_estado +=  "CASA MIA<br/>";
+                              texto_estado +=  "(47) 3382-0874 ou (47) 3382-3012<br/>";
+                              texto_estado +=  "Região Timbó/SC<br/><br/>"
+
+                              texto_estado +=  "RUDINEI<br/>";
+                              texto_estado +=  "(49) 98869-7490<br/>";
+                              texto_estado +=  "Região Chapecó/SC<br/><br/>";
+
+                              texto_estado +=  "SC LAGE<br/>";
+                              texto_estado +=  "(47) 99140-0285<br/>";
+                              texto_estado +=  "Região Joinville/SC<br/>";
+                            }
+                             if (estado_aux == 18)
+                            {
+                              texto_estado +=  "BOSSE SERVIÇOS<br/>"
+                              texto_estado += "(47) 3323-9988 ou (47) 99983-1920<br/>"
+                              texto_estado += "Região Rio Grande do Sul/RS<br/>"
+                            }
+
+                              $('#aux').html(texto_estado);
+
+                            $('.estado' + estado_aux).each(function() {
+                                if (ativos[estado_aux])
+                                    $(this).attr('fill', 'yellow');
+                                else
+                                    $(this).attr('fill', '#F1F1F2');
+
+                                $(this).attr('stroke', '#D0D2D3');
+                            });
+                        },
+                        function() {
+                            var estado_aux = $(this).attr('class');
+                            estado_aux = estado_aux.split(' ');
+                            estado_aux = estado_aux[1].replace('estado', '');
+
+                            $('.estado' + estado_aux).each(function() {
+                                if (ativos[estado_aux])
+                                    $(this).attr('fill', 'orange');
+                                else
+                                    $(this).attr('fill', '#D0D2D3');
+
+                                $(this).attr('stroke', '#F1F1F2')
+                            });
+                        }
+                );
+                ativaComEstado();
+            });
+        </script>
+        <style type="text/css">
+            .estado{cursor:pointer;}
+
+            div#aux {
+              float: left;
+            }
+        </style>
+    </head>
+    <body>
+      <svg id="vector-layer" preserveAspectRatio="none" width="400px" height="500px" viewBox="0 0 400 500">
+        <g transform="matrix(1, 0, 0, 1, 47.421246, 71.55497)"><path fill="#D0D2D3" stroke="#F1F1F2" stroke-width="0.7199" stroke-miterlimit="10" d="M146.691,276.623"></path><path fill="#D0D2D3" stroke="#F1F1F2" stroke-width="0.7199" stroke-miterlimit="10" d="M237.638,111.115"></path><polygon class="estado estado12" fill="#D0D2D3" stroke="#F1F1F2" stroke-width="0.7199" stroke-miterlimit="10" points="134.23 30.197 134.23 46.62 133.328 59.595 133.328 73.861 127.493 80.346 124.793 82.069 127.937 83.799 131.983 83.799 135.127 81.205 137.822 82.5 143.213 90.72 146.361 96.767 148.159 104.982 156.694 108.878 167.032 110.6 176.913 111.467 187.699 111.899 198.482 113.198 202.526 116.219 211.963 118.812 226.342 121.845 237.573 122.273 240.713 119.251 241.169 114.489 243.869 108.878 254.651 108.439 260.491 108.007 265.437 102.823 269.025 99.792 278.459 99.792 291.042 99.792 300.923 99.792 303.174 104.547 307.664 106.716 312.158 106.28 318.006 101.957 323.841 100.658 330.134 100.658 337.319 100.658 341.812 103.248 344.961 103.248 347.66 98.5 349.451 92.442 353.944 88.123 355.299 84.235 358.443 82.069 357.99 75.584 353.944 72.562 348.105 72.562 342.714 72.127 340.467 70.4 340.916 63.911 340.916 58.728 315.755 58.728 313.504 49.217 312.611 39.699 308.569 33.217 302.721 28.467 302.277 22.844 300.923 10.74 300.026 1.229 294.187 -4.389 286.549 -5.253 258.696 -5.688 251.951 -10.011 247.458 -12.601 242.063 -13.904 237.573 -14.763 224.995 -15.626 210.617 -16.493 205.671 -16.493 195.785 -16.493 188.148 -16.061 179.613 -16.061 175.119 -16.061 167.477 -12.601 159.838 -6.551 152.201 0.367 149.51 6.42 140.518 15.927 137.378 21.981" style=""></polygon><path  class="estado estado17" fill="#D0D2D3" stroke="#F1F1F2" stroke-width="0.7199" stroke-miterlimit="10" d="M 153.106 116.662 L 153.106 126.168 L 153.55 135.679 L 154.452 140.866 L 162.086 141.301 L 171.979 141.301 L 180.955 141.733 L 190.852 143.028 L 204.329 146.488 L 212.419 149.941 L 218.704 151.24 L 226.794 153.833 L 233.988 155.571 L 239.827 158.596 L 271.276 187.556 L 278.013 189.717 L 287.005 189.286 L 296.886 189.286 C 296.886 189.286 299.589 187.991 300.483 190.584 C 301.384 193.177 303.182 196.198 303.182 196.198 L 302.281 201.389 L 300.035 206.149 L 294.647 211.763 L 292.4 216.522 L 297.791 217.817 L 303.182 219.975 L 306.779 214.788 L 314.413 208.303 L 321.153 202.688 L 333.285 196.63 C 333.285 196.63 336.433 194.037 336.882 192.311 C 337.323 190.581 340.479 179.767 340.479 179.767 L 343.175 170.261 L 344.072 159.888 L 344.072 149.937 L 343.623 138.268 C 343.623 138.268 343.623 129.625 343.623 128.327 C 343.623 127.032 343.179 117.517 343.179 117.517 L 341.828 111.467 L 333.738 105.414 L 326.545 105.414 L 320.709 107.575 L 317.113 110.597 L 313.071 111.464 L 305.437 113.625 L 301.396 111.895 L 298.696 108.87 L 296.001 105.841 L 289.256 106.277 L 283.417 106.701 L 274.432 107.999 L 268.588 107.999 L 263.651 113.19 L 259.605 116.216 L 251.967 115.784 L 249.272 118.377 L 245.226 123.567 L 242.983 128.322 L 237.589 128.322 L 231.304 128.322 L 224.563 127.456 L 215.126 126.589 L 206.143 124.427 L 198.501 121.834 L 191.316 119.676 L 184.13 118.809 L 179.184 118.809 L 167.953 117.082 L 159.418 116.216 L 153.106 116.662 Z" style=""></path><path class="estado estado18"  fill="#D0D2D3" stroke="#F1F1F2" stroke-width="0.7199" stroke-miterlimit="10" d="M 9.322 255.863 L 16.508 254.996 L 22.8 251.107 L 29.989 248.514 L 36.733 249.809 L 43.022 256.298 L 53.355 264.934 L 61.894 274.017 L 61.894 279.635 L 65.487 283.524 L 70.43 282.225 L 76.27 279.196 L 80.311 277.042 L 84.809 280.931 L 87.504 283.956 L 91.55 289.138 L 97.389 293.898 L 104.131 292.598 L 109.966 298.218 L 116.71 301.243 L 121.653 304.703 L 127.493 311.188 L 131.986 316.806 L 138.727 316.375 L 145.913 321.561 L 147.262 325.886 L 152.205 330.213 L 157.152 336.699 C 157.152 336.699 158.945 336.691 160.296 337.562 C 161.645 338.433 167.037 341.893 167.037 341.893 L 170.628 345.781 L 170.177 355.719 L 166.591 360.475 C 166.591 360.475 160.749 363.503 160.749 364.798 C 160.749 366.097 160.3 382.525 160.3 382.525 L 164.793 379.064 L 171.534 374.316 L 180.962 369.985 L 185.008 362.644 L 192.646 354.86 L 195.349 343.615 L 199.391 332.81 L 203.428 326.328 L 203.428 315.084 L 207.473 308.602 L 212.865 304.274 L 213.312 294.332 L 223.202 292.175 L 228.141 288.718 L 229.486 278.34 L 235.787 274.017 L 240.28 255.859 L 244.317 253.697 L 250.614 255.427 L 251.063 258.452 L 256 260.182 L 259.597 256.298 L 264.539 254.996 L 271.281 254.996 L 270.832 265.369 L 266.342 269.697 L 260.951 277.045 L 251.51 285.254 L 247.017 293.037 L 242.975 299.095 L 233.992 304.71 L 224.102 310.764 C 224.102 310.764 218.263 313.357 216.918 314.217 C 215.563 315.084 211.97 317.253 211.97 317.253 L 212.423 322.437 L 216.012 322.001 L 220.958 321.573 L 228.597 318.113 L 237.576 311.627 L 246.119 303.844 L 254.659 296.062 L 264.088 285.686 L 274.869 271.419 L 281.61 259.323 L 289.248 244.187 L 292.396 235.975 L 296.886 226.029 L 292.845 223.436 L 287.01 222.136 L 286.108 213.925 L 289.705 205.278 L 294.651 197.937 L 294.651 194.476 L 282.519 195.343 L 272.63 193.177 L 265.444 191.455 L 256.005 182.375 L 250.617 176.322 L 243.432 169.837 C 243.432 169.837 235.797 165.514 233.995 164.218 C 232.197 162.923 223.658 160.757 223.658 160.757 C 223.658 160.757 214.23 157.297 211.526 156.87 C 208.831 156.442 200.744 156.442 198.048 155.143 C 195.353 153.845 184.122 152.114 182.772 151.682 C 181.423 151.255 174.674 148.23 166.143 148.661 C 157.608 149.089 146.829 149.089 143.678 149.089 C 140.529 149.089 133.793 149.089 133.793 149.089 L 127.052 153.845 L 119.414 159.035 L 109.08 163.783 L 100.99 168.542 L 93.8 172.865 L 86.614 176.754 L 6.634 254.568 L 9.322 255.863 Z" style=""></path></g>
+      </svg>
+
+
+        <div id="aux"></div>
+    </body>
+</html>
